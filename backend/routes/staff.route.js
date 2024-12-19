@@ -1,5 +1,14 @@
 import {Router} from "express"
+import { 
 
+    addAStaff,
+    retrieveAllStaffs,
+    retrieveStaffById,
+    updateStaffById,
+    deleteStaffById 
+    
+} from "../controllers/staff.controllers.js"
+    
 const router=Router();
 /*
 4. Staff Management Endpoints
@@ -14,7 +23,7 @@ DELETE	/staff/:id	Remove a staff member.
 */
 router.post("/",addAStaff)
 router.get("/",retrieveAllStaffs)
-router.get("/:id",RetrieveStaffById)
+router.get("/:id",retrieveStaffById)
 router.put("/:id",updateStaffById)
 router.delete("/:id",deleteStaffById)
 

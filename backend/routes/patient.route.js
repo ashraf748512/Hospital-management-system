@@ -1,5 +1,13 @@
 import {Router} from "express"
+import {
 
+    addAPatient,
+    retrieveAllPatients,
+    retrievePatientById,
+    updatePatientById,
+    deletePatientById
+
+} from "../controllers/patient.controllers.js"
 const router=Router();
 /*
 
@@ -15,7 +23,7 @@ DELETE	/patients/:id	Delete a patient record.
 */
 router.post("/",addAPatient)
 router.get("/",retrieveAllPatients)
-router.get("/:id",RetrievePatientById)
+router.get("/:id",retrievePatientById)
 router.put("/:id",updatePatientById)
 router.delete("/:id",deletePatientById)
 

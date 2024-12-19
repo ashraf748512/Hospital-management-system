@@ -1,6 +1,13 @@
 
 import {Router} from "express"
+import {
+    addNewBed,
+    retrieveAllBeds,
+    retrieveBedById,
+    updateBedById,
+    removeById
 
+} from "../controllers/bed.controllers.js"
 const router=Router();
 /*
 9. Bed Management Endpoints
@@ -16,7 +23,7 @@ DELETE	/beds/:id	Remove a bed record.
 */
 router.post("/",addNewBed)
 router.get("/",retrieveAllBeds)
-router.get("/:id",RetrieveBedById)
+router.get("/:id",retrieveBedById)
 router.put("/:id",updateBedById)
 router.delete("/:id",removeById)
 

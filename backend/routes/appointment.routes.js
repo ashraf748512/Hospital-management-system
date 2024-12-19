@@ -1,5 +1,13 @@
 import {Router} from "express"
+import {
+    scheduleAnAppointment,
+    retrieveAllAppointments,
+    retrieveAppointmentById,
+    updateAppointmentById,
+    deleteAppointmentById
 
+
+} from "../controllers/appoinment.controllers.js"
 const router=Router();
 /*
 
@@ -13,9 +21,9 @@ GET	/appointments/:id	Retrieve details of a specific appointment.
 PUT	/appointments/:id	Update appointment details (status, time).
 DELETE	/appointments/:id	Cancel an appointment.
 */
-router.post("/",ScheduleAnAppointment)
+router.post("/",scheduleAnAppointment)
 router.get("/",retrieveAllAppointments)
-router.get("/:id",RetrieveAppointmentById)
+router.get("/:id",retrieveAppointmentById)
 router.put("/:id",updateAppointmentById)
 router.delete("/:id",deleteAppointmentById)
 

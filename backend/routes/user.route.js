@@ -1,5 +1,15 @@
 import {Router} from "express"
-
+import {
+    signup,
+    login,
+    logout,
+    forgetPassword,
+    resetPassword,
+    retrieveAllUsers,
+    retrieveUsersById,
+    updateUsersById,
+    deleteUserById
+} from "../controllers/user.controllers.js"
 const router=Router();
 /*
 2. User Management Endpoints
@@ -15,10 +25,10 @@ router.post("/signup",signup)
 router.post("/login",login)
 router.post("/logout",logout)
 router.post("/forget-password",forgetPassword)
-router.post("/reset-password",forgetPassword)
+router.post("/reset-password",resetPassword)
 router.delete("/:id",deleteUserById)
-router.get("/:id",RetrieveUsersById)
+router.get("/:id",retrieveUsersById)
 router.put("/:id",updateUsersById)
-router.get("/",RetrieveAllUsers)
+router.get("/",retrieveAllUsers)
 
 export default Router;

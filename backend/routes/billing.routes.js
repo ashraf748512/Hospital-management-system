@@ -1,6 +1,12 @@
 
 import {Router} from "express"
+import {
+    generateABill,
+    retrieveAllBills,
+    retrieveBillById,
+    updateBillById
 
+} from "../controllers/billing.controllers.js"
 const router=Router();
 /*
  Billing Endpoints
@@ -15,7 +21,7 @@ PUT	/billing/:id	Update billing status (paid/unpaid).
 
 router.post("/",generateABill)
 router.get("/",retrieveAllBills)
-router.get("/:id",RetrieveBillById)
+router.get("/:id",retrieveBillById)
 router.put("/:id",updateBillById)
 
 

@@ -1,5 +1,11 @@
 import {Router} from "express"
+import {
+    MakeAnAdmission,
+    retrieveAllActiveAdmission,
+    retrieveAdmissionById,
+    updateAdmissionDetailsById
 
+} from "../controllers/addmission.controllers.js"
 const router=Router();
 /*
 8. Admission Management Endpoints
@@ -13,7 +19,7 @@ PUT	/admissions/:id	Update admission details (discharge date).
 */
 router.post("/",MakeAnAdmission)
 router.get("/",retrieveAllActiveAdmission)
-router.get("/:id",RetrieveAdmissionById)
+router.get("/:id",retrieveAdmissionById)
 router.put("/:id",updateAdmissionDetailsById)
 
 

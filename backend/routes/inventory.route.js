@@ -1,5 +1,13 @@
-
 import {Router} from "express"
+
+import {
+    addAnInventory,
+    retrieveAllInventories,
+    retrieveAnInventoryById,
+    updateAnInventoryById,
+    removeAnInventoryById
+} from "../controllers/inventory.controllers.js"
+
 
 const router=Router();
 /* Inventory Management Endpoints
@@ -14,7 +22,7 @@ DELETE	/inventory/:id	Remove an inventory item.
 */
 router.post("/",addAnInventory)
 router.get("/",retrieveAllInventories)
-router.get("/:id",RetrieveAnInventoryById)
+router.get("/:id",retrieveAnInventoryById)
 router.put("/:id",updateAnInventoryById)
 router.delete("/:id",removeAnInventoryById)
 
