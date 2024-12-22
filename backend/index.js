@@ -1,24 +1,36 @@
+import dotenv from "dotenv"
+dotenv.config();
 import express from "express";
-import userRoute from "./routes/user.route.js"
-import staffRoute from "./routes/staff.route.js"
-import patientRoute from "./routes/patient.route.js"
-import inventoryRoute from "./routes/inventory.route.js"
-import billingRoute from "./routes/billing.route.js"
-import appointmentRoute from "./routes/appointment.routes.js"
-import addmissionRoute from "./routes/addmission.route.js"
-import bedRoute from "./routes/bed.routes.js"
+import cookieParser from "cookie-parser";
+import {protectedRoute} from "./middlewares/validateToken.js"
+import authRoutes from "./routes/auth.routes.js"
+import userRoutes from "./routes/user.routes.js"
+import staffRoutes from "./routes/staff.routes.js"
+import patientRoutes from "./routes/patient.routes.js"
+import inventoryRoutes from "./routes/inventory.routes.js"
+import billingRoutes from "./routes/billing.routes.js"
+import appointmentRoutes from "./routes/appointment.routes.js"
+import addmissionRoutes from "./routes/addmission.routes.js"
+import bedRoutes from "./routes/bed.routes.js"
+
+import {connectDB} from "./lib/mongoDbConnection.js"
+ 
 const app =express();
 const PORT=8000;
-
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
-
-app.use("/user",userRoute);
-app.use("/patient",patientRoute);
-app.use("/billling",billingRoute);
-app.use("/staff",staffRoute);
-app.use("/inventory",inventoryRoute);
-app.use("/bed",bedRoute);
-app.use("/appointment",appointmentRoute);
-app.use("/addmission",addmissionRoute);
-app.listen(PORT,()=>console.log("app is listing on Port : "+PORT))
+app.get('/',(req,res)=>res.send("hello I am here"))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+app.use("/auth",authRoutes)
+app.use("/user",protectedRoute,userRoutes);
+app.use("/patient",patientRoutes);
+app.use("/billing",billingRoutes);
+app.use("/staff",staffRoutes);
+app.use("/inventory",inventoryRoutes);
+app.use("/bed",bedRoutes);
+app.use("/appointment",appointmentRoutes);
+app.use("/addmission",addmissionRoutes);
+app.listen(PORT,()=>{
+    connectDB();
+    console.log("app is listing on Port : "+PORT)}
+)

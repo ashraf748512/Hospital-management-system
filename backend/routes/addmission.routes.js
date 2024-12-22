@@ -24,4 +24,4 @@ router.put("/:id",updateAdmissionDetailsById)
 
 
 
-export default Router;
+export default router;

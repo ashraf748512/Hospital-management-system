@@ -8,6 +8,7 @@ bed_id: Reference to the Bed Management Collection.
 admission_date: Date and time of admission.
 discharge_date: Nullable, updated on discharge.
 doctor_id: Reference to the Staff Collection (ObjectID with role Doctor).
+ const {patient_id,bed_id,admission_date,discharge_date,doctor_id}=req.body
 */
 
 
@@ -26,6 +27,7 @@ const addmissionSchema=new Schema({
     }, 
     discharge_date:{
         type:String,
+        default:""
        
     },
     doctor_id:{

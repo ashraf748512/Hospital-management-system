@@ -27,4 +27,4 @@ router.put("/:id",updateAnInventoryById)
 router.delete("/:id",removeAnInventoryById)
 
 
-export default Router;
+export default router;

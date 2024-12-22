@@ -5,7 +5,7 @@ import {
     retrieveAllBeds,
     retrieveBedById,
     updateBedById,
-    removeById
+    removeBedById
 
 } from "../controllers/bed.controllers.js"
 const router=Router();
@@ -25,7 +25,7 @@ router.post("/",addNewBed)
 router.get("/",retrieveAllBeds)
 router.get("/:id",retrieveBedById)
 router.put("/:id",updateBedById)
-router.delete("/:id",removeById)
+router.delete("/:id",removeBedById)
 
 
-export default Router;
+export default router;

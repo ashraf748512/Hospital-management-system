@@ -20,6 +20,14 @@ role:{
     type:String,
     enum:["User","Staff"],
     default:"User"
+},
+accessToken:{
+    type:String,
+    default:""
+},
+expairsIn:{
+    type:Number,
+    default:0
 }
 },{timestamps:true})
 

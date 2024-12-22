@@ -7,6 +7,7 @@ quantity: Number of items available.
 threshold: Minimum quantity for alerts.
 category: Enum (Medicine, Equipment)
 expiry_date: Expiration date for perishable items.
+const {item_name,quantity,threshold,expiry_date,category}=req.body
 */
 const inventorySchema=new Schema({
   item_name:{

@@ -16,15 +16,16 @@ shift: Morning, Evening, Night (for nurses or other staff).
 experience: Years of experience (for doctors).
 salary: Staff member's monthly salary (optional for tracking HR data).
 */
-const staffSchema=new Schema({
-user_id:{
-        type:Schema.Types.ObjectId,
-        ref:"User"
-},   
+const staffSchema=new Schema({ 
 fullName:{
     type:String,
-    require:true
+    required:true
 }, 
+email:{
+   type:String,
+   required:true,
+   unique:true
+},
  role:{
     type:String,
     enum:["Admin","Doctor","Nurse", "Pharmacist","receptionist","cleaning"]
@@ -32,7 +33,7 @@ fullName:{
 },
 specialization:{
     type:String,
-    enum:["Cardiologist","Dermatologist"]
+    enum:["Cardiologist","Dermatologist","Orthopedic"]
     
 },
 
@@ -41,7 +42,7 @@ availability:{
     enum:["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 },
 contact:{
-    type:string
+    type:String
 },
 shift:{
     type:String,

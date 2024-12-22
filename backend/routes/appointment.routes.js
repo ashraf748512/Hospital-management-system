@@ -28,4 +28,4 @@ router.put("/:id",updateAppointmentById)
 router.delete("/:id",deleteAppointmentById)
 
 
-export default Router;
+export default router;

@@ -7,6 +7,8 @@ appointment_id: Reference to the Appointment Collection.
 amount: Total bill amount.
 status: Enum (Paid, Unpaid).
 payment_method: Enum (Cash, Card, UPI, etc.).
+const {appointment_id,amount,status,payment_method}=req.body
+
 */
 const billingSchema=new Schema({
 appointment_id:{
@@ -19,11 +21,13 @@ appointment_id:{
     },
     status:{
         type:String,
-        enum:["Paid","Unpaid"]
+        enum:["Paid","Unpaid"],
+        default:"Unpaid"
     },
     payment_method:{
         type:String,
-        enum:["Cash","Card","UPI"]
+        enum:["Cash","Card","UPI"],
+        default:"Cash"
     }
 
 },{timestamps:true})

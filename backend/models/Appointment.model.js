@@ -5,16 +5,17 @@ patient_id: Reference to the patient (ObjectID).
 doctor_id: Reference to the doctor (ObjectID).
 date: Appointment date and time.
 status: Scheduled/Completed/Cancelled.
+const {patient_id,doctor_id,dateTime,status}=req.body
 */
 const appointmentSchema=new Schema({
     patient_id:{
     type:Schema.Types.ObjectId,
-    ref:User,
+    ref:"User",
     require:true
  }, 
  doctor_id:{
     type:Schema.Types.ObjectId,
-    ref:User,
+    ref:"User",
     
 },
 
@@ -27,7 +28,6 @@ status:{
     enum:["pending", "confirmed", "cancelled", "completed", "paid"],
     default:"pending"
 },
-n
 },{timestamps:true})
 
 const Appointment= model("Appointment",appointmentSchema)

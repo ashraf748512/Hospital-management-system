@@ -16,26 +16,37 @@ user_id:{
     type:Schema.Types.ObjectId,
     ref:"User"
 },
-    fullName:{
+fullName:{
     type:String,
     require:true
  }, 
- dob:{
+dob:{
    type:Date,
  },
- gender:{
+age:{
+    type:Number,
+    required:true
+ },
+gender:{
     type:String,
     enum:["male","female","other"]
  },
- address:{
-    type:String,
-
-},
-// TODO:i'll do this later
-medicalHistory:{
-    type:String,
-    enum:["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
-},
+address: {
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true, default: "India" }
+  },
+medicalHistory: [
+    {
+      date: { type: Date, required: true },
+      condition: { type: String, required: true },
+      treatment: { type: String, required: true },
+      doctor: { type: String },
+      notes: { type: String }
+    }
+  ],
 contact:{
     type:String,
     required:true

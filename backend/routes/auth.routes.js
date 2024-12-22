@@ -1,15 +1,13 @@
 import {Router} from "express"
+import {protectedRoute } from "../middlewares/validateToken.js"
 import {
     signup,
     login,
     logout,
-    forgetPassword,
+    forgotPassword,
     resetPassword,
-    retrieveAllUsers,
-    retrieveUsersById,
-    updateUsersById,
-    deleteUserById
-} from "../controllers/user.controllers.js"
+    
+} from "../controllers/auth.controllers.js"
 const router=Router();
 /*
 2. User Management Endpoints
@@ -21,14 +19,12 @@ GET	/users/:id	Retrieve details of a specific user.
 PUT	/users/:id	Update user details (name, role, etc.).
 DELETE	/users/:id	Deactivate or delete a user account.
 */
+
 router.post("/signup",signup)
 router.post("/login",login)
-router.post("/logout",logout)
-router.post("/forget-password",forgetPassword)
-router.post("/reset-password",resetPassword)
-router.delete("/:id",deleteUserById)
-router.get("/:id",retrieveUsersById)
-router.put("/:id",updateUsersById)
-router.get("/",retrieveAllUsers)
+router.post("/logout",protectedRoute,logout)
+router.post("/forgot-password",protectedRoute,forgotPassword)
+router.post("/reset-password",protectedRoute,resetPassword)
 
-export default Router;
+
+export default router;

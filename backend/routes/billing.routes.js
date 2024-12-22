@@ -26,4 +26,4 @@ router.put("/:id",updateBillById)
 
 
 
-export default Router;
+export default router;
