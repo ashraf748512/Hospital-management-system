@@ -14,7 +14,7 @@ dist/
 build/
 
 # Environment variables
-
+.env
 
 # OS-specific files
 .DS_Store
