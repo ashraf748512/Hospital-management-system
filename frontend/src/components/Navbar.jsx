@@ -1,43 +1,57 @@
-import React from 'react'
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
-export const NavbarLocal = () => {
+import React, { useState } from 'react'
+import {assets} from "../assets/assets.js"
+import { NavLink, useNavigate } from 'react-router'
+export const Navbar = () => {
+  const [showMenu ,setShowMenu]=useState(false);
+  const [token ,setToken]=useState(true);
+  const navigate=useNavigate()
   return (
-    <Navbar fluid rounded>
-    <Navbar.Brand href="https://flowbite-react.com">
-      <img src="https://flowbite-react.com/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-      <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">HMS</span>
-    </Navbar.Brand>
-    <div className="flex md:order-2">
-      <Dropdown
-        arrowIcon={false}
-        inline
-        label={
-          <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
-        }
-      >
-        <Dropdown.Header>
-          <span className="block text-sm">Bonnie Green</span>
-          <span className="block truncate text-sm font-medium">name@flowbite.com</span>
-        </Dropdown.Header>
-        <Dropdown.Item>Dashboard</Dropdown.Item>
-        <Dropdown.Item>Settings</Dropdown.Item>
-        <Dropdown.Item>Earnings</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item>Sign out</Dropdown.Item>
-      </Dropdown>
-      <Navbar.Toggle />
-    </div>
-    <Navbar.Collapse>
-      <Navbar.Link href="#" active>
-        Home
-      </Navbar.Link>
-      <Navbar.Link href="#">About</Navbar.Link>
-      <Navbar.Link href="#">Services</Navbar.Link>
-      <Navbar.Link href="#">User</Navbar.Link>
-      <Navbar.Link href="#">Contact</Navbar.Link>
-    </Navbar.Collapse>
-  </Navbar>
+<div className='flex items-center justify-between border-b border-b-gray-300 mb-5 py-4 text-sm bg-white'>
+  <img className='w-44 cursor-pointer' src={assets.logo} alt="" />
+  <ul className=' hidden  md:flex items-start gap-5 font-medium'>
+    <NavLink  className="py-1"  to="/">
+      <li>HOME</li>
+      <hr className='border-none outline-none h-0.5 bg-primary m-auto w-3/5 hidden'/>
+    </NavLink >
+    <NavLink  className="py-1" to="/about">
+      <li>ABOUT US</li>
+      <hr className='border-none outline-none h-0.5 bg-primary m-auto w-3/5 hidden'/>
+    </NavLink>
+    <NavLink  className="py-1" to="/doctors">
+      <li>ALL DOCTORS</li>
+      <hr className='border-none outline-none h-0.5 bg-primary m-auto w-3/5 hidden'/>
+    </NavLink>
+    <NavLink className="py-1"  to="/contact">
+      <li>CONTACT US</li>
+      <hr className='border-none outline-none h-0.5 bg-primary m-auto w-3/5 hidden'/>
+    </NavLink>
+    <NavLink to="/">
+      <li></li>
+      <hr />
+    </NavLink>
+  </ul>
+  <div className="flex items-center gap-4">
+    {
+      token?<div className='flex items-center cursor-pointer gap-2 group relative '>
+      <img className="w-8 rounded-full z-30" src={assets.profile_pic} alt="" />           
+      <img className='w-2.5 z-30' src={assets.dropdown_icon} alt="" />    
+      <div className=" absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 hidden z-20 group-hover:block  ">
+      <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
+        <p onClick={()=>navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
+        <p onClick={()=>navigate('/my-appointment')} className='hover:text-black cursor-pointer'>My&nbsp;Appointment</p>
+        <p onClick={()=>setToken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+        </div>  
+        </div>     
+      </div>
+      : <button onClick={()=>navigate("/login")} className='py-3 px-8 bg-primary font-light hidden md:block text-white text-lg rounded-full active:translate-y-[-10px] active:scale-110 transition-all duration-500'>
+      Create Account
+    </button>
+    }
+ 
+  </div>
+ 
+</div>
   )
 }
 
-export default NavbarLocal
+export default Navbar
