@@ -7,7 +7,7 @@ export const Navbar = () => {
   const navigate=useNavigate()
   return (
 <div className='flex items-center justify-between border-b border-b-gray-300 mb-5 py-4 text-sm bg-white'>
-  <img className='w-44 cursor-pointer' src={assets.logo} alt="" />
+  <img onClick={()=>navigate("/")} className='w-44 cursor-pointer' src={assets.logo} alt="" />
   <ul className=' hidden  md:flex items-start gap-5 font-medium'>
     <NavLink  className="py-1"  to="/">
       <li>HOME</li>
