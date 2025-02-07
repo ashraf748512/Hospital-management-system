@@ -4,7 +4,7 @@ import { Routes,Route, Navigate } from 'react-router';
 import Home from './pages/Home';
 import Doctors from './pages/Doctors';
 import Contact from './pages/Contact';
-import About from './pages/about';
+import About from './pages/About';
 import MyAppointment from './pages/MyAppointment';
 import Appointment from './pages/Appointment';
 import MyProfile from './pages/MyProfile';
