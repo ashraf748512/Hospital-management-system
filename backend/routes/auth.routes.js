@@ -6,6 +6,7 @@ import {
     logout,
     forgotPassword,
     resetPassword,
+    checkAuth,
     
 } from "../controllers/auth.controllers.js"
 const router=Router();
@@ -22,9 +23,10 @@ DELETE	/users/:id	Deactivate or delete a user account.
 
 router.post("/signup",signup)
 router.post("/login",login)
-router.post("/logout",protectedRoute,logout)
+router.get("/logout",protectedRoute,logout)
 router.post("/forgot-password",protectedRoute,forgotPassword)
 router.post("/reset-password",protectedRoute,resetPassword)
+router.get("/check-authUser",protectedRoute,checkAuth)
 
 
 export default router;

@@ -11,9 +11,17 @@ export async function protectedRoute(req,res,next){
 
      const user=await User.findById(decoded.userId);
      if(!user)return res.status(401).json({"message":"invalid token!!!"});
-     const { password, ...safeUser } = user.toObject();
+   
      
-     req.user={...safeUser
+     req.user={
+      _id:user._id,
+        fullName:user.fullName,
+        email:user.email,
+        role:user.role,
+        gender:user.gender,
+        address:user.address,
+        birthday:user.birthday,
+        phone:user.phone
      };
      next();
      

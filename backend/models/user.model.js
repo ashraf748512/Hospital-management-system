@@ -16,6 +16,25 @@ password:{
     required:true,
     minlength:6
 },
+profilePic:{
+    type:String,
+    default:""
+},
+phone:{
+     type:String
+},
+address:{
+    type:{
+        type:String,
+    }
+},
+gender:{
+    type:String,
+    enum:["Male","Female","Other"]
+},
+birthday:{
+    type:String
+},
 role:{
     type:String,
     enum:["User","Staff"],

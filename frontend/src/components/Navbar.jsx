@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {assets} from "../assets/assets.js"
 import { NavLink, useNavigate } from 'react-router'
+import { userContext } from '../context/userContext.jsx'
 export const Navbar = () => {
+  const {authUser,logout}=useContext(userContext)
   const [showMenu ,setShowMenu]=useState(false);
-  const [token ,setToken]=useState(true);
+   const handleLogout=()=>{
+    const data=logout()
+    console.log("this is from handle logout"+data)
+   }
   const navigate=useNavigate()
   return (
 <div className='flex items-center justify-between border-b border-b-gray-300 mb-5 py-4 text-sm bg-white'>
@@ -32,14 +37,14 @@ export const Navbar = () => {
   </ul>
   <div className="flex items-center gap-4">
     {
-      token?<div className='flex items-center cursor-pointer gap-2 group relative '>
+      Object.keys(authUser).length> 0?<div className='flex items-center cursor-pointer gap-2 group relative '>
       <img className="w-8 rounded-full z-30" src={assets.profile_pic} alt="" />           
       <img className='w-2.5 z-30' src={assets.dropdown_icon} alt="" />    
       <div className=" absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 hidden z-20 group-hover:block  ">
       <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
         <p onClick={()=>navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
         <p onClick={()=>navigate('/my-appointment')} className='hover:text-black cursor-pointer'>My&nbsp;Appointment</p>
-        <p onClick={()=>setToken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+        <p onClick={handleLogout} className='hover:text-black cursor-pointer'>Logout</p>
         </div>  
         </div>     
       </div>

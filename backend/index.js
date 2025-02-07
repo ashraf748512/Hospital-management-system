@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 dotenv.config();
+import cors from "cors"
 import express from "express";
 import cookieParser from "cookie-parser";
 import {protectedRoute} from "./middlewares/validateToken.js"
@@ -17,7 +18,10 @@ import {connectDB} from "./lib/mongoDbConnection.js"
  
 const app =express();
 const PORT=8000;
-app.get('/',(req,res)=>res.send("hello I am here"))
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    credentials: true, // Allow credentials (cookies)
+  }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())

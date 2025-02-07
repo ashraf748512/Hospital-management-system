@@ -8,7 +8,11 @@ export async function retrieveAllUsers(req,res){
         _id:user._id,
         fullName:user.fullName,
         email:user.email,
-        role:user.role
+        role:user.role,
+        gender:user.gender,
+        address:user.address,
+        birthday:user.birthday,
+        phone:user.phone
     }))
        return res.status(200).json(safeUsers)
     } catch (error) {
@@ -23,10 +27,14 @@ export async function retrieveUserById(req,res){
     try {
         const user=await User.findById(id); 
      const safeUser={
-         _id:user._id,
-         fullName:user.fullName,
-         email:user.email,
-         role:user.role
+        _id:user._id,
+        fullName:user.fullName,
+        email:user.email,
+        role:user.role,
+        gender:user.gender,
+        address:user.address,
+        birthday:user.birthday,
+        phone:user.phone
      }
         return res.status(200).json(safeUser)
      } catch (error) {
@@ -36,15 +44,29 @@ export async function retrieveUserById(req,res){
 }
 
 export async function updateUserById(req,res){
-    const role=req.query.role
+    const {fullName,email,profilePic,phone,address,gender,birthday}=req.body
+    // const role=req.query.role
     const id=req.params.id;
     try {
-        const user=await User.findByIdAndUpdate(id,{$set:{role:role}},{ new: true }); 
-     const safeUser={
-         _id:user._id,
-         fullName:user.fullName,
-         email:user.email,
-         role:user.role
+        const filter={};
+            if(fullName)filter.fullName=fullName
+            if(profilePic)filter.profile_pic=profilePic
+            if(email)filter.email=email
+            if(phone)filter.phone=phone
+            if(address)filter.address=address
+            if(gender)filter.gender=gender
+            if(birthday)filter.birthday=birthday
+        const user=await User.findByIdAndUpdate(id,{$set:{...filter}},{ new: true }); 
+        const safeUser={
+            _id:user._id,
+            fullName:user.fullName,
+            email:user.email,
+            role:user.role,
+            profilePic:user.profilePic,
+            phone:user.phone,
+            address:user.address,
+            gender:user.gender,
+            birthday:user.birthday
      }
         return res.status(200).json(safeUser)
      } catch (error) {
@@ -59,10 +81,14 @@ export async function deleteUserById(req,res){
     try {
         const user=await User.findByIdAndDelete(id); 
      const safeUser={
-         _id:user._id,
-         fullName:user.fullName,
-         email:user.email,
-         role:user.role
+        _id:user._id,
+        fullName:user.fullName,
+        email:user.email,
+        role:user.role,
+        gender:user.gender,
+        address:user.address,
+        birthday:user.birthday,
+        phone:user.phone
      }
         
         res.cookie("jwt","",{

@@ -58,7 +58,12 @@ export async function login(req,res){
     return res.status(201).json({
         _id:user._id,
         fullName:user.fullName,
-        email
+        email:user.email,
+        role:user.role,
+        gender:user.gender,
+        address:user.address,
+        birthday:user.birthday,
+        phone:user.phone
     })
    
  } catch (error) {
@@ -143,4 +148,11 @@ export async function resetPassword(req, res) {
         return res.status(500).json({ message: "Internal server error" });
     }
 }
-
+export const checkAuth=(req, res)=>{
+    try {
+      res.status(200).json(req.user)
+    } catch (error) {
+      console.log("error in checkAuth controllers"+error.message)
+      res.status(500).json({message:"Internal server error"})
+    }
+  }
